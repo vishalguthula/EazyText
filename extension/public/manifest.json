@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "EasyText — AI YouTube Assistant",
+  "version": "1.0.0",
+  "description": "Understand any YouTube video with full summary, timestamped timeline, transcript, RAG AI chatbot, and video seeking.",
+  "permissions": [
+    "sidePanel",
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "action": {
+    "default_title": "Open EasyText Side Panel"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
+
